@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas HM5 Liang Dai</title>
+	<meta charset="UTF-8" name="viewport" content="width=device-width">
+	<style type="text/css">
+		body{
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="my-canvas"></canvas>
+	<script type="text/javascript">
+		
+		var canvas = document.getElementById("my-canvas");
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		var c = canvas.getContext("2d");
+
+		//gradient
+		var grd=c.createLinearGradient(0,0,canvas.width,canvas.height);
+		grd.addColorStop(0,"rgb(13, 2, 8)");
+		grd.addColorStop(0.5,"rgb(0, 255, 65)");
+		grd.addColorStop(1,"rgb(255, 255, 255)");
+
+		
+		//c.fillStyle = "black";
+		//c.fillStyle = "white";
+		c.fillStyle = grd;
+		c.fillRect(0,0, canvas.width, canvas.height);
+
+		//c.strokeStyle = "rgb(0, 255, 65)";
+		c.strokeStyle = "black";
+		c.lineWidth = 4;
+
+		drawCanvas(); // draw it first
+		var rotateDegrees = 0;
+			leftToRight = 0;
+			frontToBack = 0;
+			x = 0;
+			y = 0;
+			z = 0;
+
+
+		function draw(cx1,cy1,radius, sAngel, eAngel, orientation){
+			c.arc(cx1,cy1,radius, sAngel * Math.PI , eAngel * Math.PI, orientation);
+		}
+
+		function drawCanvas(){
+			// first circle
+			for(i = -290; i < canvas.width; i += 10){
+				c.beginPath();
+				draw(i,100,200,-0.3, 0.3, false);
+				c.stroke();
+			}
+
+			//second cir
+			for(i = -290; i < canvas.width + 500; i += 10){
+				c.beginPath();
+				draw(i,380,150,-0.7, 0.7, true);
+				c.stroke();
+			}
+
+			//third cir
+			for(i = -290; i < canvas.width; i += 10){
+				c.beginPath();
+				draw(i,580,100,-0.3, 0.3, false);
+				c.stroke();
+			}
+
+			//4th
+			for(i = -290; i < canvas.width + 500; i += 10){
+				c.beginPath();
+				draw(i,722,80,-0.7, 0.7, true);
+				c.stroke();
+			}
+
+			//5th
+			for(i = -290; i < canvas.width; i += 10){
+				c.beginPath();
+				draw(i,829,60,-0.3, 0.3, false);
+				c.stroke();
+			}
+
+			//6th
+			for(i = -290; i < canvas.width + 500; i += 10){
+				c.beginPath();
+				draw(i,909,40,-0.7, 0.7, true);
+				c.stroke();
+			}
+
+			//7th
+			for(i = -290; i < canvas.width; i += 10){
+				c.beginPath();
+				draw(i,957,30,-0.3, 0.3, false);
+				c.stroke();
+			}
+
+			//8th
+			for(i = -290; i < canvas.width + 500; i += 10){
+				c.beginPath();
+				draw(i,997,20,-0.7, 0.7, true);
+				c.stroke();
+			}
+		}
+
+		var preXMove = 0;
+			preYMove = 0;
+
+		window.requestAnimationFrame(render);
+
+
+
+
+
+
+		function move(x,y,z,rotateDegrees){
+			let speed = 10; //speed
+			let xMove = Math.round(x * speed);
+			let yMove = Math.round(y * speed);
+			let zMove = Math.round(z - 9.8) /100;
+			let aRotate = Math.round(rotateDegrees) ;
+			
+
+			//console.log("Rotate degree:", aRotate);
+
+			// //stabilizer
+			// var weight = 7;
+			// if(Math.abs(xMove - preXMove)<weight){
+			// 	xMove = preXMove;				
+			// } else{
+			// 	xMove = xMove - weight;
+			// }
+			// if(Math.abs(yMove - preYMove)<weight){
+			// 	yMove = preYMove;
+			// } else{
+			// 	yMove = yMove - weight;
+			// }
+
+			// preYMove = yMove;
+			// preXMove = xMove;
+
+
+
+			//c.clearRect(-1000,-1000,canvas.width+1000, canvas.height+1000);
+
+			c.save();
+			// c.scale(1+zMove,1+zMove);
+			c.translate(xMove,yMove);
+			//console.log(xMove,yMove);
+
+
+			// Keep the background gradient not move
+			c.fillRect(-canvas.width/5,-canvas.height/5, canvas.width * 1.5, canvas.height *1.5);
+
+			// c.rotate(rotateDegrees, canvas.width/2, canvas.height/2);
+			// console.log("canvas.width/2, canvas.height/2:", canvas.width/2, canvas.height/2);
+
+			drawCanvas();
+			c.restore();
+		}
+
+
+
+		//Motion
+		if (window.DeviceMotionEvent==undefined)
+		console.log("Your browser does not support the DeviceMotionEvent");
+		//Orientation
+		if (window.DeviceOrientationEvent==undefined) 
+		console.log("Your browser does not support the DeviceOrientationEvent");
+
+		function handleOrientationEvent(event) {
+	        // alpha: rotation around z-axis
+	        rotateDegrees = event.alpha;
+	        // gamma: left to right
+	        leftToRight = event.gamma;
+	        // beta: front back motion
+	        frontToBack = event.beta;
+	        //console.log("handleOrientationEvent: ", rotateDegrees, leftToRight, frontToBack);
+    	}
+    	window.addEventListener("deviceorientation", handleOrientationEvent, true);
+		
+		function handleMotionEvent(event) {
+			x = event.accelerationIncludingGravity.x; // right -
+			y = event.accelerationIncludingGravity.y; // forward - 
+			z = event.accelerationIncludingGravity.z; // G
+			//console.log("handleMotionEvent: ", x, y, z);
+			//draw first frame
+		}
+		window.addEventListener("devicemotion", handleMotionEvent, true);
+
+
+		//var progress = 0;
+		function render() {
+
+			
+		    //progress += 1; //move the canvas
+		    move(x,y,z,rotateDegrees);
+
+		    // if (progress < 100) {
+		    //        //Recursive
+		    //        window.requestAnimationFrame(render);
+		    // }
+		}
+	</script>
+</body>
+</html>
