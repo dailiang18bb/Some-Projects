@@ -1,5 +1,5 @@
 # Bridget Riley Drawing
-This webpage using HTML canvas to imitate one of Bridget Riley's Drawing.
+A Bridget Riley style drawing web page, Using native Canvas API. Integrate with device accelerometer, give the drawing a smooth nature movement, while moving the device.
 
 ### Original picture
 
