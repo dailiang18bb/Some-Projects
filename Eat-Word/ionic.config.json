@@ -1,0 +1,8 @@
+{
+  "name": "serviceExample",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "5b375deb"
+}

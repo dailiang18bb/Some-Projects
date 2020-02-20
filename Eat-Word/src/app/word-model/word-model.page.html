@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="favorite">
+    <ion-title style="color:white;">
+      <ion-icon name="logo-freebsd-devil" style="font-size:30px;"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="favorite">
+  <div class="spinnerWrap" *ngIf="!timeoutFlag">
+    <ion-spinner class="mySpinner" name="bubbles" ></ion-spinner>
+  </div>
+
+
+  <ion-card *ngIf="timeoutFlag" class="card">
+    <ion-card-header class="cardHeader" color="primary">
+      <ion-card-title style="font-size:44px">{{headWord}}</ion-card-title>
+      <ion-card-subtitle>
+        <span class="pron" style="font-size:24px" *ngIf="pronFlag">\{{pronString}}\ </span>
+        <ion-icon class="speakerIcon" name="volume-high" (click)="play()" style="font-size:38px;vertical-align: middle;" *ngIf="pronFlag" ></ion-icon>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content class="contentWrap">
+      <ion-list *ngFor="let item of values; let index = index;" no-padding>
+        <ion-list-header style="font-size:24px;" *ngIf="index < 3" color="favorite">
+          *{{item.fl}}
+        </ion-list-header>
+        <p *ngIf="index < 3" style="margin:0;" color="favorite">
+          <ion-item no-padding class="wordDef" *ngFor=" let x of item.shortdef; let i = index;" color="favorite">
+            {{i+1}}. {{x}}</ion-item>
+        </p>
+      </ion-list>
+
+      <ion-button class="modalBtn firstBtn" expand="block" (click)="moreInformation()"> More Information</ion-button>
+      <ion-button class="modalBtn" expand="block" (click)="closeModal()"> Eat next</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

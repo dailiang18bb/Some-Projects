@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Nosifer');
+@import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture');
+
+
+.spinnerWrap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mySpinner {
+    display: flex;
+    color:#c62828;
+    width: 78px;
+    height: 78px;
+}
+
+
+.contentWrap{
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+
+.cardHeader{
+    padding: 0;
+    text-align: center;
+    color: #c62828;
+}
+
+.card{
+    font-family: 'Nosifer', cursive;
+}
+
+.item-inner{
+    padding-right: 0px!important;
+}
+
+
+.modalBtn{
+    font-family: 'Nosifer', cursive;
+    font-size: 24px;
+    color: #c62828;
+}
+.firstBtn{
+    margin-top: 18px;
+}
+
+
+.pron{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.wordDef{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+}
+
+.speakerIcon{
+    border-radius: 44%;
+    // transition: background-color,opacity 100ms linear;
+    -webkit-transition-duration: 0.44s; /* Safari */
+    transition-duration: 0.44s;
+    
+}
+.speakerIcon:hover {
+    color: white;
+}
+
+.speakerIcon:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    // position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.speakerIcon:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}

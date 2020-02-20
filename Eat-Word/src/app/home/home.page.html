@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="favorite">
+    <ion-title style="color:white;">
+      <ion-icon name="logo-freebsd-devil" style="font-size:30px;"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="i-content" color="favorite">
+  <ion-card class="card">
+    <ion-card-header color='primary' style="font-size:46px">
+      <span style="color:#b71c1c">Feeding</span>
+      me with <br>an English
+      <span style="color:#b71c1c">word</span>
+      , <br>
+      <span style="color:#b71c1c">please!</span>
+    </ion-card-header>
+    <ion-item color="favorite">
+      <ion-input id='myInput' required type="text" placeholder="brain" [(ngModel)]="word" clearInput></ion-input>
+    </ion-item>
+    <ion-button class="submitBut" expand="block" (click)='submit()'> Eat it</ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="flag" class="card">
+    <ion-item *ngFor="let x of wordsPredict" (click)="wordsPredictLink(x)" style="color:white" color="favorite"> {{x}}</ion-item>
+  </ion-card>
+
+
+  <!-- <ion-button (click) = 'getData()'> click me</ion-button>
+  <br>
+  <br>
+  <br>
+  <ion-button (click) = 'play()'> play</ion-button>
+  <br>
+  <br>
+  <ion-button (click) = 'request("Thanos")'> request</ion-button> -->
+
+</ion-content>
