@@ -8,3 +8,7 @@ Archive of some my projects.
 
 - [OPT Start Date Calculator](https://github.com/dailiang18bb/OPT-Calculator)
   - `Angular 7`
+
+
+- [Bug Triage](https://github.com/dailiang18bb/bug-triage)
+  - `Keras`, `Word2vec`
